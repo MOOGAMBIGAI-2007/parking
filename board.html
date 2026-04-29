@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bike Parking</title>
+    <style>
+        body { text-align:center; font-family: Arial; }
+        .box {
+            border:1px solid black;
+            padding:20px;
+            margin:20px;
+            display:inline-block;
+            width:200px;
+        }
+        button { padding:8px; }
+    </style>
+</head>
+<body>
+
+<h2>Bike Parking Dashboard</h2>
+
+<div class="box">
+    <h3>Right</h3>
+    <p>3 slots free</p>
+    <button onclick="show('right')">View</button>
+</div>
+
+<div class="box">
+    <h3>Left</h3>
+    <p>2 slots free</p>
+    <button onclick="show('left')">View</button>
+</div>
+
+<div class="box">
+    <h3>Straight</h3>
+    <p>4 slots free</p>
+    <button onclick="show('straight')">View</button>
+</div>
+
+<div id="output"></div>
+
+<script>
+function show(dir) {
+    let data = {
+        right: ["B1-Free","B2-Occupied","B3-Free"],
+        left: ["B4-Free","B5-Occupied"],
+        straight: ["B6-Free","B7-Free","B8-Occupied","B9-Free"]
+    };
+
+    let output = "<h3>"+dir.toUpperCase()+" SIDE</h3>";
+    data[dir].forEach(s => output += "<p>"+s+"</p>");
+
+    document.getElementById("output").innerHTML = output;
+}
+</script>
+
+</body>
+</html>
