@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Dashboard</title>
+    <style>
+        body { text-align:center; font-family: Arial; }
+
+        .box {
+            border:1px solid black;
+            padding:20px;
+            margin:20px;
+            display:inline-block;
+            width:200px;
+            cursor:pointer;
+        }
+
+        .slot {
+            display:inline-block;
+            width:60px;
+            height:60px;
+            margin:5px;
+            line-height:60px;
+            color:white;
+            font-weight:bold;
+        }
+
+        .free { background:green; }
+        .occupied { background:red; }
+    </style>
+</head>
+<body>
+
+<h2>Car Parking Dashboard</h2>
+
+<div class="box" onclick="showSlots('right')">Right</div>
+<div class="box" onclick="showSlots('left')">Left</div>
+<div class="box" onclick="showSlots('straight')">Straight</div>
+
+<h3 id="title"></h3>
+<div id="slots"></div>
+
+<script>
+let data = {
+    right: ["occupied","free","free","occupied","free","free","occupied","free","occupied","free"],
+    left: ["free","occupied","free","free","occupied","free","free","occupied","free","free"],
+    straight: ["free","free","occupied","free","occupied","free","free","occupied","free","occupied"]
+};
+
+function showSlots(dir) {
+    document.getElementById("title").innerText = dir.toUpperCase() + " SIDE (10 SLOTS)";
+    
+    let output = "";
+    for(let i=0; i<10; i++) {
+        let status = data[dir][i];
+        let color = status === "free" ? "free" : "occupied";
+        output += `<div class="slot ${color}">C${i+1}</div>`;
+    }
+
+    document.getElementById("slots").innerHTML = output;
+}
+</script>
+
+</body>
+</html>
